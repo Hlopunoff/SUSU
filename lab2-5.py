@@ -59,3 +59,6 @@ y3 = ((x ** 2 + 1) / (3 * (x ** 2 - 1))) + (x ** 2 - 1) * (1 - x)
 print(y3)
 y4 = sqrt(x + sqrt(x + x))
 print(y4)
+# geometry  №1
+a = int(input("Введите длину ребра: "))
+print(a*(math.sqrt(3))/2)
