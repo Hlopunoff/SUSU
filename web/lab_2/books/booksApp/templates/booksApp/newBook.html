@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить новую книгу</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'booksApp/newBook.css' %}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="header__nav">
+                <h1 class="header__title">Добавление</h1>
+                <ul class="header__links">
+                    <li class="header__link"><a href="/">Вернуться на главную</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <section>
+                <form action="{% url 'thanks-page' %}" method="POST" class="form">
+                    {% csrf_token %}
+                    <h2 class="form__title">Новая книга</h2>
+                    <fieldset class="form__content">
+                        <input type="hidden" value="-1" name="flag">
+                        <label class="form__label">
+                            <span>Название:</span>
+                            <input name="title" type="text" placeholder="Введите название книги" class="form__book-name" required>
+                        </label>
+                        <label class="form__label">
+                            <span>Автор:</span>
+                            <input name="author" type="text" placeholder="Введите автора книги" class="form__author-name" required/>
+                        </label>
+                        <label class="form__label">
+                            <span>Цена:</span>
+                            <input name="price" type="number" placeholder="Введите цену книги" class="form__book-price" required/>
+                        </label>
+                        <label class="form__label">
+                            <span>Описание:</span>
+                            <textarea name="descr"  placeholder="Напишите описание к книге" class="form__book-descr" required></textarea>
+                        </label>
+                    </fieldset>
+                    <button class="form__submit" type="submit">Добавить</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <script src="{% static 'booksApp/form.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta content="">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'booksApp/styles.css'%}">
+    <title>Каталог книг</title>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="header__nav">
+                <h1 class="header__title">Каталог книг</h1>
+                <ul class="header__links">
+                    <li class="header__link"><a href="add-book/">Добавить книгу</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="books">
+            <div class="container">
+                <div class="books__wrap">
+                    <ul class="books__list">
+                        {% for book in books %}
+                            <li class="books__book card">
+                                <div class="card">
+                                    <div class="card__img">
+                                        <img src="https://images.unsplash.com/photo-1610116306796-6fea9f4fae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="{{ book.title }}">
+                                    </div>
+                                    <div class="card__info">
+                                        <h2 class="card__title">{{ book.title }}</h2>
+                                        <h3 class="card__author">{{ book.author }}</h3>
+                                        <p class="card__descr">{{ book.descr }}</p>
+                                        <span class="card__price">{{ book.price }} &#x20bd;</span>
+                                        <div class="card__cla">
+                                            <a href="edit-book/{{ book.id }}/" class="card__edit">Изменить</a>
+                                            <a href="{% url 'delete' book.id %}" class="card__delete">Удалить</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <nav class="books__nav">
+                        <ul class="books__pagination pagination">
+                            {% with ''|center:pages as range %}
+                            {% for page in range %}
+                                    <li class="pagination__item">
+                                        <a href="{% url 'home' %}?limit={{limit}}&offset={{offset}}">{{ forloop.counter  }}</a>
+                                    </li>
+                            {% endfor %}
+                            {% endwith %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

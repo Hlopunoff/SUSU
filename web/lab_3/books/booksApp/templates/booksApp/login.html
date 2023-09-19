@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  {% load static %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'booksApp/auth.css' %}">
+    <title>Войти</title>
+</head>
+<body>
+    <main class="main">
+      <div class="container">
+        <form method="POST" class="form">
+          <h1 class="form__title">Аутентификация</h1>
+          <fieldset class="form__fieldset fieldset">
+            <label class="form__label label">
+              <span class="label__title">Логин/Email</span>
+              <input type="text" class="form__input" name="login" required>
+            </label>
+            <label class="form__label label">
+              <span class="label__title">Пароль</span>
+              <input type="password" class="form__input" name="password" required>
+              <div class="form__input-decor"></div>
+            </label>
+            <button type="submit" class="form__submit" data-btn-type="login">Войти</button>
+          </fieldset>
+          <span class="form__redirect">Нет аккаунта? <a href="../register/">Регистрация</a></span>
+        </form>
+      </div>
+    </main>
+
+  <script src="{% static 'booksApp/js/auth.js' %}"></script>
+</body>
+</html>
